@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<textarea id="area" onkeydown="updateRemaining()" onkeyup="updateRemaining()" rows="5" cols="20"></textarea>
+<label id="label" for="area" style="display:block">Remaining Chars: 100</label>
+<script>
+    var area = document.getElementById('area'),
+        label = document.getElementById('label'),
+        maxCharCount = 100;
+
+    var updateRemaining = function() {
+        var remaining = maxCharCount - area.value.length;
+        label.style.color = remaining > 5 ? "black" : "red";
+        label.innerText = "Remaining Chars: " + remaining;
+        if (remaining == 0) area.readOnly = true;
+    }
+</script>
+</body>
+</html>
