@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="/js/jquery.min.js" ></script>
+    <script src="/js/sampleproject.js" ></script>
+    <link rel="stylesheet" href="/css/sampleproject.css"></link>
+</head>
+<body>
+    <table id="table">
+        <tr>
+            <th>Name</th>
+            <th>Username</th>
+            <th>E-mail</th>
+            <th>Address</th>
+        </tr>
+    </table>
+    <script>
+        $(document).ready(function() {
+            var users = localStorage.getItem("users"),
+                table = $("#table");
+            if (users) {
+                populateTable(JSON.parse(users),table);
+            } else {
+                $.getJSON("http://jsonplaceholder.typicode.com/users", json => {
+                    localStorage.setItem("users", JSON.stringify(json));
+                    populateTable(json,table);
+                });
+            }
+        })
+    </script>
+</body>
+</html>
